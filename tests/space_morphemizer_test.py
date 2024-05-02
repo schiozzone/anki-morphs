@@ -2,14 +2,13 @@ from unittest import mock
 
 import pytest
 
+import ankimorphs.morphemizer
 from ankimorphs import spacy_wrapper
 from ankimorphs.morpheme import Morpheme
-from ankimorphs.morphemizer import get_morphemizer_by_name
+from ankimorphs.morphemizer import get_morphemizer_by_description
 
 
-@pytest.fixture(
-    scope="module"  # module-scope: created and destroyed once per module. Cached.
-)
+@pytest.fixture(scope="function")
 def fake_environment():
     patch_testing_variable = mock.patch.object(
         spacy_wrapper, "testing_environment", True
@@ -17,10 +16,12 @@ def fake_environment():
     patch_testing_variable.start()
     yield
     patch_testing_variable.stop()
+    # this resets the morphemizers for the future tests
+    ankimorphs.morphemizer.morphemizers = None
 
 
 def test_french(fake_environment):  # pylint:disable=unused-argument
-    morphemizer = get_morphemizer_by_name("SpaceMorphemizer")
+    morphemizer = get_morphemizer_by_description("AnkiMorphs: Language w/ Spaces")
     assert morphemizer is not None
 
     sentence = "Tu es quelqu'un de bien."
@@ -40,7 +41,7 @@ def test_french(fake_environment):  # pylint:disable=unused-argument
 
 
 def test_english(fake_environment):  # pylint:disable=unused-argument
-    morphemizer = get_morphemizer_by_name("SpaceMorphemizer")
+    morphemizer = get_morphemizer_by_description("AnkiMorphs: Language w/ Spaces")
     assert morphemizer is not None
 
     sentence = "My mother-in-law is wonderful"

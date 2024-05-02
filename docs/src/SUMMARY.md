@@ -35,9 +35,9 @@
 
 # Developer Guide
 - [Setup](developer_guide/setup.md)
+- [Debugging](developer_guide/debugging.md)
 - [Docs](developer_guide/docs.md)
 - [Qt Designer](developer_guide/qt-designer.md)
-- [Tests](developer_guide/tests.md)
 - [Databases](developer_guide/databases.md)
 
 -----------

@@ -4,6 +4,8 @@ If a constants or a variable is only used in one file, then it should be declare
 that file and not here.
 """
 
+__version__ = "2.2.4"
+
 DEV_MODE: bool = False
 
 PROFILE_SETTINGS_FILE_NAME = "ankimorphs_profile_settings.json"
@@ -20,5 +22,9 @@ EXTRA_FIELD_UNKNOWNS: str = "am-unknowns"
 EXTRA_FIELD_UNKNOWNS_COUNT: str = "am-unknowns-count"
 EXTRA_FIELD_HIGHLIGHTED: str = "am-highlighted"
 EXTRA_FIELD_SCORE: str = "am-score"
+
+NONE_OPTION = "(none)"
+COLLECTION_FREQUENCY_OPTION = "Collection frequency"
+
 
 ankimorphs_broken: bool = False
